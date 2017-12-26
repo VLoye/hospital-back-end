@@ -22,8 +22,6 @@ public class UserController {
     @RequestMapping("/")
     public Map<String,Object> listUser(){
      Map<String,Object> map = new HashMap<>();
-        List<User> userList=userService.getUserList();
-        map.put("users",userList);
      return map;
     }
 }

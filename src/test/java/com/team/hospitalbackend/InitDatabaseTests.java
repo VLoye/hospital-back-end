@@ -2,6 +2,7 @@ package com.team.hospitalbackend;
 
 import com.team.hospitalbackend.user.dao.UserDAO;
 import com.team.hospitalbackend.user.model.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql("/init-schema.sql")
+@Sql("/hospital-schema.sql")
 public class InitDatabaseTests {
 
 	@Autowired
@@ -22,19 +23,8 @@ public class InitDatabaseTests {
 	@Test
 	public void contextLoads() {
 
-//		for (int i=0;i<10;i++){
-//			User user = new User();
-//			user.setSalt("salt");
-//			user.setRealname("linlazy");
-//			user.setPassword("password");
-//			userDAO.addUser(user);
-//		}
-
-		List<User> userList = userDAO.selectById(3);
-		for(User user:userList){
-			System.out.printf(user.toString());
-		}
-
+		User user = userDAO.findByName("linlazy");
+		Assert.assertEquals(1,user.getSex());
 	}
 
 }
