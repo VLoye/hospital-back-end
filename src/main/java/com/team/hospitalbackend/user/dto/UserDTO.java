@@ -1,8 +1,8 @@
-package com.team.hospitalbackend.user.model;
+package com.team.hospitalbackend.user.dto;
 
 import java.util.Date;
 
-public class User {
+public class UserDTO {
     private long id;
     private String name;
     private String salt;
