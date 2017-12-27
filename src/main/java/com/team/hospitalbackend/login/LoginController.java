@@ -1,13 +1,12 @@
 package com.team.hospitalbackend.login;
 
+import com.team.hospitalbackend.user.dto.UserDTO;
 import com.team.hospitalbackend.user.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -24,22 +23,17 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    @ApiOperation(value = "注册用户",notes = "")
     @RequestMapping(path = "/reg",method = {RequestMethod.POST})
-    public Map<String,Object> reg(@RequestParam("name") String name,
-                                  @RequestParam("sex") int sex,
-                                  @RequestParam("certificateType") int certificateType,
-                                  @RequestParam("certificateNumber") String certificateNumber,
-                                  @RequestParam("birthDate") Date birthDate,
-                                  @RequestParam("password") String password,
-                                  @RequestParam("address") String address,
-                                  @RequestParam("mobile") String mobile){
+    public Map<String,Object> reg(@RequestBody UserDTO userDTO){
+        Map<String,Object> map=null;
         try{
-            Map<String,Object> map = userService.register(name, sex, certificateType,certificateNumber,birthDate,password,address,mobile);
+            map= userService.register(userDTO);
             return map;
         }catch(Exception e){
             logger.error("注册异常"+e.getMessage());
 
-            Map<String,Object> map=new HashMap<>();
+            map=new HashMap<>();
             map.put("msg","服务器异常");
             return map;
         }

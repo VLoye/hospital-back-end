@@ -18,6 +18,7 @@ public interface UserDAO {
     @Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where name = #{name} "})
     User selectByName(@Param("name") String name);
 
-    @Select("SELECT * FROM user WHERE name = #{name}")
-    User findByName(@Param("name") String name);
+    @Insert({"insert into ",TABLE_NAME," ( ",INSERT_FIELDS, " ) ",
+    "values (#{name},#{salt},#{password},#{sex},#{mobile},#{address},#{birthDate},#{certificateType},#{certificateNumber})"})
+    int addUser(User user);
 }

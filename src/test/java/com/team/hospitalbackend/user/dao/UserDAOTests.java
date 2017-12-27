@@ -1,30 +1,27 @@
-package com.team.hospitalbackend;
+package com.team.hospitalbackend.user.dao;
 
-import com.team.hospitalbackend.user.dao.UserDAO;
 import com.team.hospitalbackend.user.model.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql("/hospital-schema.sql")
-public class InitDatabaseTests {
+public class UserDAOTests {
 
 	@Autowired
-	private UserDAO userDAO;
+	UserDAO userDAO;
 
 	@Test
 	public void contextLoads() {
 
-		User user = userDAO.selectByName("linlazy");
-		Assert.assertEquals(1,user.getSex());
+		User user = new User();
+		user.setName("linlaz1y");
+		user.setPassword("aaaaa");
+		user.setCertificateNumber("441522199408110676");
+		userDAO.addUser(user);
 	}
 
 }
