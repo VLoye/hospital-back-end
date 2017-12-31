@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +33,21 @@ public class LoginController {
         }catch(Exception e){
             logger.error("注册异常"+e.getMessage());
 
+            map=new HashMap<>();
+            map.put("msg","服务器异常");
+            return map;
+        }
+    }
+
+    @ApiOperation(value = "登录用户",notes = "")
+    @RequestMapping(path = "login",method = {RequestMethod.POST})
+    public Map<String,Object> login(@RequestBody UserDTO userDTO){
+        Map<String,Object> map=null;
+        try {
+            map = userService.login(userDTO);
+            return map;
+        }catch(Exception e){
+            logger.error("登录异常"+e.getMessage());
             map=new HashMap<>();
             map.put("msg","服务器异常");
             return map;

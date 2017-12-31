@@ -1,11 +1,10 @@
 package com.team.hospitalbackend.user.dao;
 
 import com.team.hospitalbackend.user.model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
+import javax.annotation.Resource;
+import javax.annotation.Resources;
 import java.util.List;
 
 @Mapper
@@ -21,4 +20,7 @@ public interface UserDAO {
     @Insert({"insert into ",TABLE_NAME," ( ",INSERT_FIELDS, " ) ",
     "values (#{name},#{salt},#{password},#{sex},#{mobile},#{address},#{birthDate},#{certificateType},#{certificateNumber})"})
     int addUser(User user);
+    //修改密码
+    @Update({"update ",TABLE_NAME," set password = #{password} where name = #{name} "})
+    int updatePswUser(@Param("name")String name,@Param("password")String password);
 }

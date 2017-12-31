@@ -23,5 +23,10 @@ public class UserDAOTests {
 		user.setCertificateNumber("441522199408110676");
 		userDAO.addUser(user);
 	}
-
+	@Test
+	public void updatePswUser(){
+		String name="linlaz1y";
+		String password="bbbbb";
+		userDAO.updatePswUser(name,password);
+	}
 }

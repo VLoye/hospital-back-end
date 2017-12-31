@@ -5,8 +5,8 @@ import java.util.Date;
 public class UserDTO {
     private long id;
     private String name;
-    private String salt;
     private String password;
+    private String token;
     private int sex;
     private String mobile;
     private String address;
@@ -30,20 +30,20 @@ public class UserDTO {
         this.name = name;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getSex() {

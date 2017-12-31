@@ -20,6 +20,15 @@ public class UserServiceTests {
 		userDTO.setName("linlazy");
 		userDTO.setPassword("123456");
 		userService.register(userDTO);
+
+	}
+	@Test
+	public void login()
+	{
+		UserDTO userDTO=new UserDTO();
+		userDTO.setName("linlazy");
+		userDTO.setPassword("123456");
+		userService.login(userDTO);
 	}
 
 }
